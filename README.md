@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# 💪 One More Rep
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**One More Rep** is a motivational workout companion app designed to keep you pushing through your gym sets. With carefully timed, randomized audio prompts — from tough-love trainers to uplifting encouragement and quirky fun lines — this app keeps your energy high and your mindset strong. Whether you're chasing PRs or just need a mental push, One More Rep is here for that *"just one more rep."*
 
-## Get started
+---
 
-1. Install dependencies
+## 🎯 App Mission
 
-   ```bash
-   npm install
-   ```
+**One More Rep** is a motivational workout companion app. It runs in the background and plays supportive or funny voice lines through the user’s earbuds at chosen intervals during gym sessions. The goal is to help users push for one more rep with random voice prompts in different tones — tough love, gentle support, or funny lines.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 Features
 
-In the output, you'll find options to open the app in a
+### ✅ Core (MVP) Features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* 🎧 **Timed Audio Prompts**: Plays voice lines at regular intervals (e.g., every 20–40 seconds) during a workout.
+* 🗂️ **Voice Pack Selection**: Choose from different tone packs — e.g., “Tough Coach,” “Kind Encouragement,” or “Funny Motivation.”
+* ⏱️ **Smart Timer Engine**: Runs in the background with configurable intervals. Randomizes playback within your set limits.
+* 📱 **Simple UI**:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+  * Start/Stop button
+  * Interval slider
+  * Voice pack selector
+* 📦 **React Native App Setup**:
 
-## Get a fresh project
+  * Expo (for rapid prototyping & dev)
+  * TypeScript-based structure
+  * State managed via Zustand or Context API
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## 🔮 Future Features (Planned)
+
+* 🎤 **User Voice Uploads**: Upload your own motivational recordings.
+* 📊 **Session Stats**: Track how long you stayed in the workout zone.
+* 🧠 **AI Suggestions**: Dynamically change tone type based on session duration or fatigue level.
+* 🔁 **Set-Based Audio Logic**: Smart detection of sets or rest breaks for more contextual prompts.
+* 🌐 **i18n Support**: Turkish, English, Japanese motivational packs.
+* 🔊 **Spotify/Audio Integration**: Run over your music without interrupting playback.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend**: React Native (with Expo)
+* **State Management**: Zustand or Context API
+* **Audio Engine**: `expo-av` or `react-native-sound`
+* **Navigation**: React Navigation
+* **Deployment**: EAS (Expo Application Services)
+
+---
+
+## 🧩 Project Structure
+
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+OneMoreRep/
+├── assets/          # Audio files, icons
+├── components/      # Reusable UI components
+├── hooks/           # Custom hooks (e.g., useTimer)
+├── screens/         # App screens (e.g., HomeScreen)
+├── store/           # Zustand/Context-based state
+├── utils/           # Helper functions
+├── App.tsx
+└── README.md
+```
