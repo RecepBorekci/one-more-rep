@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function HomeScreen() {
+export default function IntervalScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello 👋</Text>
+      <Text style={styles.text}>Interval</Text>
     </View>
   );
 }
@@ -15,5 +15,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
-  text: { fontSize: 18 },
+  text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
 });
