@@ -5,19 +5,14 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-// Supported icon libraries mapping
-const IconMap = {
-  MaterialIcons,
-  Ionicons,
-  AntDesign,
-};
-
-type IconLibrary = keyof typeof IconMap;
-
-type IconSpec = {
-  lib: IconLibrary;
-  name: string;
-};
+// Discriminated icon spec per library for strict typing
+export type IconSpec =
+  | { lib: "Ionicons"; name: React.ComponentProps<typeof Ionicons>["name"] }
+  | {
+      lib: "MaterialIcons";
+      name: React.ComponentProps<typeof MaterialIcons>["name"];
+    }
+  | { lib: "AntDesign"; name: React.ComponentProps<typeof AntDesign>["name"] };
 
 // Tab configuration (single source of truth)
 const TAB_CONFIG: ReadonlyArray<{
@@ -75,8 +70,16 @@ export default function TabLayout() {
   );
 
   const TabIcon = ({ icon, color }: { icon: IconSpec; color: string }) => {
-    const IconComponent = IconMap[icon.lib] || Ionicons;
-    return <IconComponent size={28} name={icon.name as any} color={color} />;
+    switch (icon.lib) {
+      case "Ionicons":
+        return <Ionicons size={28} name={icon.name} color={color} />;
+      case "MaterialIcons":
+        return <MaterialIcons size={28} name={icon.name} color={color} />;
+      case "AntDesign":
+        return <AntDesign size={28} name={icon.name} color={color} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -97,11 +100,13 @@ export default function TabLayout() {
             title: tab.title,
             headerShown: false,
             tabBarIcon: ({ color }) => (
-              <TabIcon icon={tab.icon} color={color} />
+              <TabIcon icon={tab.icon} color={color!} />
             ),
             tabBarLabel: ({ focused }) => (
               <TabLabel focused={focused}>{tab.title}</TabLabel>
             ),
+            tabBarAccessibilityLabel: `${tab.title} tab`,
+            tabBarButtonTestID: `tab-${tab.name}`,
           }}
         />
       ))}
