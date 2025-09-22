@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello 👋</Text>
+      <Text style={styles.text}>Home</Text>
     </View>
   );
 }
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#F9EAC6", // Match this with your COLORS.backgroundColor
   },
-  text: { fontSize: 18 },
+  text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
 });
