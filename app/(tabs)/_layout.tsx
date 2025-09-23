@@ -19,26 +19,36 @@ const TAB_CONFIG: ReadonlyArray<{
   name: string;
   title: string;
   icon: IconSpec;
+  headerShown: boolean; // omit if default (shown)
+  headerTitle: string; // omit if same as title or auto-derived
 }> = [
   {
     name: "index",
     title: "Home",
     icon: { lib: "Ionicons", name: "home-outline" },
+    headerShown: false,
+    headerTitle: "Home",
   },
   {
     name: "interval",
     title: "Interval",
     icon: { lib: "AntDesign", name: "clockcircleo" },
+    headerShown: true,
+    headerTitle: "Interval Screen",
   },
   {
     name: "mode",
     title: "Mode",
     icon: { lib: "MaterialIcons", name: "record-voice-over" },
+    headerShown: true,
+    headerTitle: "Mode Screen",
   },
   {
     name: "settings",
     title: "Settings",
     icon: { lib: "Ionicons", name: "settings-outline" },
+    headerShown: true,
+    headerTitle: "Settings",
   },
 ] as const;
 
@@ -100,11 +110,8 @@ export default function TabLayout() {
           name={tab.name}
           options={{
             title: tab.title,
-            headerShown: tab.name === "index" ? false : true,
-            headerTitle:
-              tab.name === "interval" || tab.name === "mode"
-                ? `${tab.title} Screen`
-                : undefined,
+            headerShown: tab.headerShown,
+            headerTitle: tab.headerTitle,
             tabBarIcon: ({ color }) => (
               <TabIcon icon={tab.icon} color={color!} />
             ),
