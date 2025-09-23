@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 // Discriminated icon spec per library for strict typing
 export type IconSpec =
@@ -90,6 +90,8 @@ export default function TabLayout() {
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: COLORS.activeText,
         tabBarInactiveTintColor: COLORS.inactiveText,
+        headerShown: true,
+        headerBackground: () => <View style={styles.headerBackground} />,
       }}
     >
       {TAB_CONFIG.map((tab) => (
@@ -98,7 +100,11 @@ export default function TabLayout() {
           name={tab.name}
           options={{
             title: tab.title,
-            headerShown: false,
+            headerShown: tab.name === "index" ? false : true,
+            headerTitle:
+              tab.name === "interval" || tab.name === "mode"
+                ? `${tab.title} Screen`
+                : undefined,
             tabBarIcon: ({ color }) => (
               <TabIcon icon={tab.icon} color={color!} />
             ),
@@ -122,5 +128,9 @@ const styles = StyleSheet.create({
   tabLabel: {
     fontSize: 12,
     marginTop: 4,
+  },
+  headerBackground: {
+    flex: 1,
+    backgroundColor: COLORS.tabBarActiveBackgroundColor,
   },
 });
