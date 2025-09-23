@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 // Discriminated icon spec per library for strict typing
 export type IconSpec =
@@ -19,26 +19,36 @@ const TAB_CONFIG: ReadonlyArray<{
   name: string;
   title: string;
   icon: IconSpec;
+  headerShown: boolean; // omit if default (shown)
+  headerTitle: string; // omit if same as title or auto-derived
 }> = [
   {
     name: "index",
     title: "Home",
     icon: { lib: "Ionicons", name: "home-outline" },
+    headerShown: false,
+    headerTitle: "Home",
   },
   {
     name: "interval",
     title: "Interval",
     icon: { lib: "AntDesign", name: "clockcircleo" },
+    headerShown: true,
+    headerTitle: "Interval Screen",
   },
   {
     name: "mode",
     title: "Mode",
     icon: { lib: "MaterialIcons", name: "record-voice-over" },
+    headerShown: true,
+    headerTitle: "Mode Screen",
   },
   {
     name: "settings",
     title: "Settings",
     icon: { lib: "Ionicons", name: "settings-outline" },
+    headerShown: true,
+    headerTitle: "Settings",
   },
 ] as const;
 
@@ -90,6 +100,8 @@ export default function TabLayout() {
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: COLORS.activeText,
         tabBarInactiveTintColor: COLORS.inactiveText,
+        headerShown: true,
+        headerBackground: () => <View style={styles.headerBackground} />,
       }}
     >
       {TAB_CONFIG.map((tab) => (
@@ -98,7 +110,8 @@ export default function TabLayout() {
           name={tab.name}
           options={{
             title: tab.title,
-            headerShown: false,
+            headerShown: tab.headerShown,
+            headerTitle: tab.headerTitle,
             tabBarIcon: ({ color }) => (
               <TabIcon icon={tab.icon} color={color!} />
             ),
@@ -122,5 +135,9 @@ const styles = StyleSheet.create({
   tabLabel: {
     fontSize: 12,
     marginTop: 4,
+  },
+  headerBackground: {
+    flex: 1,
+    backgroundColor: COLORS.tabBarActiveBackgroundColor,
   },
 });
