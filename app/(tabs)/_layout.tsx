@@ -54,9 +54,9 @@ const TAB_CONFIG: ReadonlyArray<{
 
 // Colors (single place)
 const COLORS = {
-  tabBarBackground: "#F9EAC6",
-  tabBarInactiveBackgroundColor: "#F9EAC6",
-  tabBarActiveBackgroundColor: "#FF6B35",
+  tabBarInactiveBackground: "#FEF9E1",
+  tabBarActiveBackground: "#FF6B35",
+  headerBackground: "#FF6B35",
   activeText: "#fff",
   inactiveText: "#988C8C",
 };
@@ -95,8 +95,8 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarInactiveBackgroundColor: COLORS.tabBarInactiveBackgroundColor,
-        tabBarActiveBackgroundColor: COLORS.tabBarActiveBackgroundColor,
+        tabBarInactiveBackgroundColor: COLORS.tabBarInactiveBackground,
+        tabBarActiveBackgroundColor: COLORS.tabBarActiveBackground,
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: COLORS.activeText,
         tabBarInactiveTintColor: COLORS.inactiveText,
@@ -129,7 +129,6 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: COLORS.tabBarBackground,
     height: 65,
   },
   tabLabel: {
@@ -138,6 +137,6 @@ const styles = StyleSheet.create({
   },
   headerBackground: {
     flex: 1,
-    backgroundColor: COLORS.tabBarActiveBackgroundColor,
+    backgroundColor: COLORS.headerBackground,
   },
 });
