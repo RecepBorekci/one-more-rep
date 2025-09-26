@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 // Discriminated icon spec per library for strict typing
 export type IconSpec =
@@ -54,11 +54,13 @@ const TAB_CONFIG: ReadonlyArray<{
 
 // Colors (single place)
 const COLORS = {
-  tabBarBackground: "#F9EAC6",
-  tabBarInactiveBackgroundColor: "#F9EAC6",
-  tabBarActiveBackgroundColor: "#FF6B35",
-  activeText: "#fff",
-  inactiveText: "#988C8C",
+  tabBarInactiveBackground: "#FEF9E1",
+  tabBarActiveBackground: "#FF6B35",
+  tabBarActiveText: "#FFFFFF",
+  tabBarInactiveText: "#988C8C",
+  headerBackground: "#FF6B35",
+  headerText: "#FFFFFF",
+  screenBackground: "#FFFFFF",
 };
 
 export default function TabLayout() {
@@ -72,7 +74,9 @@ export default function TabLayout() {
     <Text
       style={[
         styles.tabLabel,
-        { color: focused ? COLORS.activeText : COLORS.inactiveText },
+        {
+          color: focused ? COLORS.tabBarActiveText : COLORS.tabBarInactiveText,
+        },
       ]}
     >
       {children}
@@ -95,13 +99,15 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarInactiveBackgroundColor: COLORS.tabBarInactiveBackgroundColor,
-        tabBarActiveBackgroundColor: COLORS.tabBarActiveBackgroundColor,
+        tabBarInactiveBackgroundColor: COLORS.tabBarInactiveBackground,
+        tabBarActiveBackgroundColor: COLORS.tabBarActiveBackground,
         tabBarStyle: styles.tabBar,
-        tabBarActiveTintColor: COLORS.activeText,
-        tabBarInactiveTintColor: COLORS.inactiveText,
+        tabBarActiveTintColor: COLORS.tabBarActiveText,
+        tabBarInactiveTintColor: COLORS.tabBarInactiveText,
         headerShown: true,
-        headerBackground: () => <View style={styles.headerBackground} />,
+        headerStyle: styles.header,
+        headerTitleStyle: { color: COLORS.headerText },
+        sceneStyle: styles.container,
       }}
     >
       {TAB_CONFIG.map((tab) => (
@@ -129,15 +135,18 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: COLORS.tabBarBackground,
     height: 65,
   },
   tabLabel: {
     fontSize: 12,
     marginTop: 4,
   },
-  headerBackground: {
+  header: {
     flex: 1,
-    backgroundColor: COLORS.tabBarActiveBackgroundColor,
+    backgroundColor: COLORS.headerBackground,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.screenBackground,
   },
 });
