@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F9EAC6",
+    backgroundColor: "white",
   },
   text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
 });
