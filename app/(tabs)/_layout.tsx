@@ -57,6 +57,7 @@ const COLORS = {
   tabBarInactiveBackground: "#FEF9E1",
   tabBarActiveBackground: "#FF6B35",
   headerBackground: "#FF6B35",
+  headerText: "#fff",
   activeText: "#fff",
   inactiveText: "#988C8C",
 };
@@ -102,6 +103,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: COLORS.inactiveText,
         headerShown: true,
         headerBackground: () => <View style={styles.headerBackground} />,
+        headerTitleStyle: { color: COLORS.headerText },
       }}
     >
       {TAB_CONFIG.map((tab) => (
