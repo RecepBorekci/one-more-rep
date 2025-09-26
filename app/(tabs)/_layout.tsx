@@ -57,9 +57,10 @@ const COLORS = {
   tabBarInactiveBackground: "#FEF9E1",
   tabBarActiveBackground: "#FF6B35",
   headerBackground: "#FF6B35",
-  headerText: "#fff",
-  activeText: "#fff",
+  headerText: "#FFFFFF",
+  activeText: "#FFFFFF",
   inactiveText: "#988C8C",
+  screenBackground: "#FFFFFF",
 };
 
 export default function TabLayout() {
@@ -104,6 +105,7 @@ export default function TabLayout() {
         headerShown: true,
         headerBackground: () => <View style={styles.headerBackground} />,
         headerTitleStyle: { color: COLORS.headerText },
+        sceneStyle: styles.container,
       }}
     >
       {TAB_CONFIG.map((tab) => (
@@ -140,5 +142,9 @@ const styles = StyleSheet.create({
   headerBackground: {
     flex: 1,
     backgroundColor: COLORS.headerBackground,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.screenBackground,
   },
 });
