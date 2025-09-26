@@ -56,10 +56,10 @@ const TAB_CONFIG: ReadonlyArray<{
 const COLORS = {
   tabBarInactiveBackground: "#FEF9E1",
   tabBarActiveBackground: "#FF6B35",
+  tabBarActiveText: "#FFFFFF",
+  tabBarInactiveText: "#988C8C",
   headerBackground: "#FF6B35",
   headerText: "#FFFFFF",
-  activeText: "#FFFFFF",
-  inactiveText: "#988C8C",
   screenBackground: "#FFFFFF",
 };
 
@@ -74,7 +74,9 @@ export default function TabLayout() {
     <Text
       style={[
         styles.tabLabel,
-        { color: focused ? COLORS.activeText : COLORS.inactiveText },
+        {
+          color: focused ? COLORS.tabBarActiveText : COLORS.tabBarInactiveText,
+        },
       ]}
     >
       {children}
@@ -100,8 +102,8 @@ export default function TabLayout() {
         tabBarInactiveBackgroundColor: COLORS.tabBarInactiveBackground,
         tabBarActiveBackgroundColor: COLORS.tabBarActiveBackground,
         tabBarStyle: styles.tabBar,
-        tabBarActiveTintColor: COLORS.activeText,
-        tabBarInactiveTintColor: COLORS.inactiveText,
+        tabBarActiveTintColor: COLORS.tabBarActiveText,
+        tabBarInactiveTintColor: COLORS.tabBarInactiveText,
         headerShown: true,
         headerStyle: styles.header,
         headerTitleStyle: { color: COLORS.headerText },
