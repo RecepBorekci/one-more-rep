@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import { useVoiceLine } from "@/hooks/useVoiceLine";
 import { Ionicons } from "@expo/vector-icons";
 import { useState, type ComponentProps } from "react";
@@ -15,6 +16,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <Logo />
       <Pressable
         style={({ pressed }) => [
           styles.button,
@@ -40,9 +42,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: "100%",
-    gap: 10,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 30,
+    paddingBottom: 50,
+    paddingTop: 120,
   },
   text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
   button: {
