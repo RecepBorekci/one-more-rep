@@ -62,7 +62,12 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
+  text: {
+    fontSize: 20,
+    textAlign: "center",
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "500",
+  },
   button: {
     padding: 10,
     borderRadius: 5,
@@ -72,9 +77,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#FF6B35",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 18,
     textAlign: "center",
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "500",
   },
   currentModeContainer: {
     flexDirection: "column",
