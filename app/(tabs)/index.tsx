@@ -1,6 +1,7 @@
 import Logo from "@/components/Logo";
 import { useVoiceLine } from "@/hooks/useVoiceLine";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import { useState, type ComponentProps } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -16,6 +17,11 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        colors={["#929292", "#FFFFFF", "#FFFFFF", "#929292"]}
+        locations={[0, 0.2, 0.5, 1]}
+        style={styles.background}
+      />
       <Logo />
       <Pressable
         style={({ pressed }) => [
@@ -47,6 +53,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingBottom: 50,
     paddingTop: 120,
+  },
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+    width: "100%",
   },
   text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
   button: {
