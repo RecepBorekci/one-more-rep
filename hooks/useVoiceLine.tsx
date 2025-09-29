@@ -65,3 +65,31 @@ export function useVoiceLine(): VoiceLineContextType {
 
   return context;
 }
+
+// Read-only state accessor for components that should not perform updates
+export function useVoiceLineState() {
+  const context = useContext(VoiceLineContext);
+
+  if (context === undefined) {
+    throw new Error(
+      "useVoiceLineState must be used within a VoiceLineProvider"
+    );
+  }
+
+  const { mode, interval } = context;
+  return { mode, interval };
+}
+
+// Updater accessor for components that need to modify voice line settings
+export function useVoiceLineUpdater() {
+  const context = useContext(VoiceLineContext);
+
+  if (context === undefined) {
+    throw new Error(
+      "useVoiceLineUpdater must be used within a VoiceLineProvider"
+    );
+  }
+
+  const { setMode, setInterval, updateSettings } = context;
+  return { setMode, setInterval, updateSettings };
+}
