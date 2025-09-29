@@ -1,3 +1,4 @@
+import { PALETTE } from "@/constants/Colors";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -54,13 +55,13 @@ const TAB_CONFIG: ReadonlyArray<{
 
 // Colors (single place)
 const COLORS = {
-  tabBarInactiveBackground: "#FEF9E1",
-  tabBarActiveBackground: "#FF6B35",
-  tabBarActiveText: "#FFFFFF",
-  tabBarInactiveText: "#988C8C",
-  headerBackground: "#FF6B35",
-  headerText: "#FFFFFF",
-  screenBackground: "#FFFFFF",
+  tabBarInactiveBackground: PALETTE.yellowLight,
+  tabBarActiveBackground: PALETTE.orangePrimary,
+  tabBarActiveText: PALETTE.white,
+  tabBarInactiveText: PALETTE.gray400,
+  headerBackground: PALETTE.orangePrimary,
+  headerText: PALETTE.white,
+  screenBackground: PALETTE.white,
 };
 
 export default function TabLayout() {

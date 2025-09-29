@@ -1,4 +1,5 @@
 import Logo from "@/components/Logo";
+import { PALETTE } from "@/constants/Colors";
 import { useVoiceLine } from "@/hooks/useVoiceLine";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -18,7 +19,12 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={["#929292", "#FFFFFF", "#FFFFFF", "#929292"]}
+        colors={[
+          PALETTE.gray600,
+          PALETTE.white,
+          PALETTE.white,
+          PALETTE.gray600,
+        ]}
         locations={[0, 0.2, 0.5, 1]}
         style={styles.background}
       />
@@ -33,7 +39,11 @@ export default function HomeScreen() {
         accessibilityState={{ selected: isPlaying }}
         accessibilityLabel={isPlaying ? "Stop" : "Play"}
       >
-        <Ionicons name={iconName as IoniconName} size={48} color="#FF6B35" />
+        <Ionicons
+          name={iconName as IoniconName}
+          size={48}
+          color={PALETTE.orangePrimary}
+        />
         <Text style={styles.buttonText}>{buttonLabel}</Text>
       </Pressable>
       <View style={styles.currentModeContainer}>
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: {
-    color: "#FF6B35",
+    color: PALETTE.orangePrimary,
     fontSize: 18,
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
