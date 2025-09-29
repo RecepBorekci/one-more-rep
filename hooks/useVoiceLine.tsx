@@ -55,17 +55,6 @@ export function VoiceLineProvider({ children }: VoiceLineProviderProps) {
   );
 }
 
-// Custom hook to use the voice line context
-export function useVoiceLine(): VoiceLineContextType {
-  const context = useContext(VoiceLineContext);
-
-  if (context === undefined) {
-    throw new Error("useVoiceLine must be used within a VoiceLineProvider");
-  }
-
-  return context;
-}
-
 // Read-only state accessor for components that should not perform updates
 export function useVoiceLineState() {
   const context = useContext(VoiceLineContext);

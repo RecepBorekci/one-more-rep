@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
 import { PALETTE } from "@/constants/Colors";
-import { useVoiceLine } from "@/hooks/useVoiceLine";
+import { useVoiceLineState } from "@/hooks/useVoiceLine";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState, type ComponentProps } from "react";
@@ -14,7 +14,7 @@ export default function HomeScreen() {
   type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
   // Use the custom hook to get voice line settings
-  const { mode: currentMode, interval } = useVoiceLine();
+  const { mode: currentMode, interval } = useVoiceLineState();
 
   return (
     <View style={styles.container}>
