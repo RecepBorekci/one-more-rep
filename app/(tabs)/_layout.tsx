@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   header: {
-    flex: 1,
     backgroundColor: COLORS.headerBackground,
   },
   headerTitleStyle: {
