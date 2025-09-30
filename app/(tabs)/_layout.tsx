@@ -107,7 +107,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: COLORS.tabBarInactiveText,
         headerShown: true,
         headerStyle: styles.header,
-        headerTitleStyle: { color: COLORS.headerText },
+        headerTitleStyle: styles.headerTitleStyle,
         sceneStyle: styles.container,
       }}
     >
@@ -141,10 +141,17 @@ const styles = StyleSheet.create({
   tabLabel: {
     fontSize: 12,
     marginTop: 4,
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "500",
   },
   header: {
-    flex: 1,
     backgroundColor: COLORS.headerBackground,
+  },
+  headerTitleStyle: {
+    color: COLORS.headerText,
+    fontSize: 20,
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "500",
   },
   container: {
     flex: 1,
