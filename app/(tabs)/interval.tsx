@@ -1,11 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function IntervalScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Interval</Text>
-    </View>
-  );
+  return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
