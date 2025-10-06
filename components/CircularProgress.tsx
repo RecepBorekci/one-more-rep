@@ -42,7 +42,7 @@ export default function CircularProgress({
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: size, height: size }]}>
       <Svg width={size} height={size} style={styles.svg}>
         {/* Background circle */}
         <Circle
