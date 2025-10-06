@@ -1,4 +1,5 @@
 import CircularProgress from "@/components/CircularProgress";
+import CustomContent from "@/components/CustomContent";
 import PresetContent from "@/components/PresetContent";
 import TwoTabToggle from "@/components/TwoTabToggle";
 import { PALETTE } from "@/constants/Colors";
@@ -64,7 +65,7 @@ export default function IntervalScreen() {
         {activeTab === "PRESETS" ? (
           <PresetContent onChange={handlePresetChanged} />
         ) : (
-          <Text style={styles.placeholderText}>Custom content goes here</Text>
+          <CustomContent />
         )}
       </View>
     </View>

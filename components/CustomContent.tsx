@@ -3,11 +3,7 @@ import { useVoiceLineState, useVoiceLineUpdater } from "@/hooks/useVoiceLine";
 import { useEffect, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-type CustomContentProps = {
-  onChange: (value: number) => void;
-};
-
-export default function CustomContent({ onChange }: CustomContentProps) {
+export default function CustomContent() {
   const { interval } = useVoiceLineState();
   const { setInterval } = useVoiceLineUpdater();
 
@@ -34,7 +30,6 @@ export default function CustomContent({ onChange }: CustomContentProps) {
     setSecondsStr(String(secs).padStart(2, "0"));
     const total = mins * 60 + secs;
     setInterval(total);
-    if (onChange) onChange(total);
   };
 
   return (
