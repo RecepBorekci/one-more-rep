@@ -1,6 +1,7 @@
 import CircularProgress from "@/components/CircularProgress";
 import CustomContent from "@/components/CustomContent";
 import PresetContent from "@/components/PresetContent";
+import RandomIntervalCheckbox from "@/components/RandomIntervalCheckbox";
 import TwoTabToggle from "@/components/TwoTabToggle";
 import { PALETTE } from "@/constants/Colors";
 import { useVoiceLineState, useVoiceLineUpdater } from "@/hooks/useVoiceLine";
@@ -68,6 +69,7 @@ export default function IntervalScreen() {
           <CustomContent />
         )}
       </View>
+      <RandomIntervalCheckbox />
     </View>
   );
 }
