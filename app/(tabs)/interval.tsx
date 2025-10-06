@@ -1,6 +1,8 @@
 import CircularProgress from "@/components/CircularProgress";
+import PresetContent from "@/components/PresetContent";
 import TwoTabToggle from "@/components/TwoTabToggle";
 import { PALETTE } from "@/constants/Colors";
+import { useVoiceLineState, useVoiceLineUpdater } from "@/hooks/useVoiceLine";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -20,6 +22,17 @@ export default function IntervalScreen() {
     }
   };
 
+  const { interval } = useVoiceLineState();
+  const { setInterval } = useVoiceLineUpdater();
+
+  const handlePresetChanged = (preset: {
+    key: string;
+    label: string;
+    seconds: number;
+  }) => {
+    setInterval(preset.seconds);
+  };
+
   return (
     <View style={styles.container}>
       <CircularProgress
@@ -28,7 +41,13 @@ export default function IntervalScreen() {
         progress={0.5}
         color={PALETTE.orangePrimary}
       >
-        <Text style={styles.timerText}>00:00</Text>
+        <Text style={styles.timerText}>
+          {interval
+            ? `${String(Math.floor(interval / 60)).padStart(2, "0")}:${String(
+                interval % 60
+              ).padStart(2, "0")}`
+            : "00:00"}
+        </Text>
       </CircularProgress>
       <TwoTabToggle
         tabs={[
@@ -43,7 +62,7 @@ export default function IntervalScreen() {
       {/* Tab content placeholders */}
       <View style={styles.tabContent}>
         {activeTab === "PRESETS" ? (
-          <Text style={styles.placeholderText}>Presets content goes here</Text>
+          <PresetContent onChange={handlePresetChanged} />
         ) : (
           <Text style={styles.placeholderText}>Custom content goes here</Text>
         )}
@@ -64,7 +83,7 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   tabContent: {
-    marginTop: 16,
+    marginTop: 50,
     minHeight: 120,
     width: "80%",
     alignItems: "center",
