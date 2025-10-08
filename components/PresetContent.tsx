@@ -31,8 +31,6 @@ export default function PresetContent({
 
   const handleSelect = (selection: Preset) => {
     onChange(selection);
-    console.log("selected", selection);
-    console.log("interval", interval);
   };
 
   const activePreset = presets.find((p) => p.seconds === interval);
