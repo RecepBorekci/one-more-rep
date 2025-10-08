@@ -1,3 +1,4 @@
+import { PALETTE } from "@/constants/Colors";
 import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
@@ -21,7 +22,7 @@ export default function CircularProgress({
   size = 200,
   strokeWidth = 12,
   progress,
-  color = "#FF6B35",
+  color = PALETTE.orangePrimary,
   children,
 }: CircularProgressProps) {
   const animatedProgress = useSharedValue(0);
