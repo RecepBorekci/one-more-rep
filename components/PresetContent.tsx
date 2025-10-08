@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useVoiceLineState } from "@/hooks/useVoiceLine";
 import { StyleSheet, View } from "react-native";
 import PresetButton from "./PresetButton";
 
@@ -11,7 +11,7 @@ type Preset = {
 type PresetContentProps = {
   presets?: Preset[];
   defaultKey?: string;
-  onChange?: (selected: Preset) => void;
+  onChange: (selected: Preset) => void;
 };
 
 const DEFAULT_PRESETS: Preset[] = [
@@ -25,16 +25,17 @@ const DEFAULT_PRESETS: Preset[] = [
 
 export default function PresetContent({
   presets = DEFAULT_PRESETS,
-  defaultKey = "s20",
   onChange,
 }: PresetContentProps) {
-  const [activeKey, setActiveKey] = useState<string>(defaultKey);
+  const { interval } = useVoiceLineState(); // Use global state
 
-  const handleSelect = (key: string) => {
-    setActiveKey(key);
-    const selection = presets.find((p) => p.key === key);
-    if (selection && onChange) onChange(selection);
+  const handleSelect = (selection: Preset) => {
+    onChange(selection);
+    console.log("selected", selection);
+    console.log("interval", interval);
   };
+
+  const activePreset = presets.find((p) => p.seconds === interval);
 
   return (
     <View style={styles.grid}>
@@ -42,8 +43,8 @@ export default function PresetContent({
         <PresetButton
           key={p.key}
           label={p.label}
-          isActive={p.key === activeKey}
-          onPress={() => handleSelect(p.key)}
+          isActive={p.key === activePreset?.key}
+          onPress={() => handleSelect(p)}
         />
       ))}
     </View>
