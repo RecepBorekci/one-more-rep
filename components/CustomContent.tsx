@@ -1,7 +1,7 @@
 import { PALETTE } from "@/constants/Colors";
 import { useVoiceLineState, useVoiceLineUpdater } from "@/hooks/useVoiceLine";
 import { useEffect, useState } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function CustomContent() {
   const { interval } = useVoiceLineState();
@@ -34,29 +34,36 @@ export default function CustomContent() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.button}>
-        <TextInput
-          value={minutesStr}
-          onChangeText={(t) => setMinutesStr(sanitize(t, 2))}
-          onBlur={commitInterval}
-          keyboardType="number-pad"
-          maxLength={2}
-          style={styles.text}
-          returnKeyType="done"
-          accessibilityLabel="Minutes input"
-        />
+      <View style={styles.innerContainer}>
+        <Text style={styles.innerText}>Minutes</Text>
+        <View style={styles.button}>
+          <TextInput
+            value={minutesStr}
+            onChangeText={(t) => setMinutesStr(sanitize(t, 2))}
+            onBlur={commitInterval}
+            keyboardType="number-pad"
+            maxLength={2}
+            style={styles.text}
+            returnKeyType="done"
+            accessibilityLabel="Minutes input"
+          />
+        </View>
       </View>
-      <View style={styles.button}>
-        <TextInput
-          value={secondsStr}
-          onChangeText={(t) => setSecondsStr(sanitize(t, 2))}
-          onBlur={commitInterval}
-          keyboardType="number-pad"
-          maxLength={2}
-          style={styles.text}
-          returnKeyType="done"
-          accessibilityLabel="Seconds input"
-        />
+
+      <View style={styles.innerContainer}>
+        <Text style={styles.innerText}>Seconds</Text>
+        <View style={styles.button}>
+          <TextInput
+            value={secondsStr}
+            onChangeText={(t) => setSecondsStr(sanitize(t, 2))}
+            onBlur={commitInterval}
+            keyboardType="number-pad"
+            maxLength={2}
+            style={styles.text}
+            returnKeyType="done"
+            accessibilityLabel="Seconds input"
+          />
+        </View>
       </View>
     </View>
   );
@@ -71,16 +78,29 @@ const styles = StyleSheet.create({
     gap: 0,
     width: "50%",
   },
+  innerContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    width: "100%",
+  },
   button: {
     padding: 10,
     backgroundColor: PALETTE.white,
     borderWidth: 2,
-    borderColor: PALETTE.gray300,
+    borderColor: PALETTE.orangePrimary,
     width: "80%",
   },
   text: {
     fontSize: 48,
     fontFamily: "OpenSans-VariableFont",
+    fontWeight: "400",
+    textAlign: "center",
+  },
+  innerText: {
+    fontSize: 12,
+    fontFamily: "Inter-VariableFont",
     fontWeight: "400",
     textAlign: "center",
   },

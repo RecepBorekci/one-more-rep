@@ -30,7 +30,10 @@ export default function RandomIntervalCheckbox() {
         value={isChecked}
         onValueChange={handleChange}
       />
-      <Text style={styles.text}>Random Interval</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>Random Interval</Text>
+        {isChecked && <Text style={styles.subText}>Range: 20s-10m</Text>}
+      </View>
     </View>
   );
 }
@@ -47,9 +50,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 40,
   },
+  textContainer: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    position: "relative",
+  },
   text: {
     fontSize: 20,
     fontFamily: "Inter-VariableFont",
     fontWeight: "400",
+    textAlign: "left",
+  },
+  subText: {
+    fontSize: 14,
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "400",
+    textAlign: "left",
+    color: PALETTE.gray400,
+    position: "absolute",
+    left: 0,
+    top: 26,
   },
 });
