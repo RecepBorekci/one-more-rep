@@ -11,6 +11,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded] = useFonts({
     "Inter-VariableFont": require("../assets/fonts/Inter-VariableFont_opsz,wght.ttf"),
+    "OpenSans-VariableFont": require("../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf"),
   });
   useEffect(() => {
     if (loaded) {
