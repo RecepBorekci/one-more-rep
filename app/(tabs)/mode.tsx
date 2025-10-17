@@ -1,3 +1,8 @@
+import {
+  useVoiceLineState,
+  useVoiceLineUpdater,
+  VoiceMode,
+} from "@/hooks/useVoiceLine";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import {
@@ -6,45 +11,73 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
-const modeImages = [
+const modeImages: {
+  id: number;
+  source: ImageSourcePropType;
+  name: string;
+  mode: VoiceMode;
+}[] = [
   {
     id: 1,
     source: require("@/assets/images/mode_images/coach_mode.png"),
     name: "Coach",
+    mode: "Coach",
   },
   {
     id: 2,
     source: require("@/assets/images/mode_images/supportive_mode.png"),
     name: "Supportive",
+    mode: "Supporting",
   },
   {
     id: 3,
     source: require("@/assets/images/mode_images/wholesome_mode.png"),
     name: "Wholesome",
+    mode: "Wholesome",
   },
   {
     id: 4,
     source: require("@/assets/images/mode_images/funny_mode.png"),
     name: "Funny",
+    mode: "Funny",
   },
 ];
 
 export default function ModeScreen() {
+  const { mode } = useVoiceLineState();
+  const { setMode } = useVoiceLineUpdater();
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
+
+  const handleModePress = (selectedMode: VoiceMode) => {
+    setMode(selectedMode);
+  };
+
   const renderImage = ({
     item,
   }: {
-    item: { id: number; source: ImageSourcePropType; name: string };
-  }) => (
-    <View style={styles.imageContainer}>
-      <Image source={item.source} style={styles.image} />
-      <Text style={styles.modeText}>{item.name}</Text>
-    </View>
-  );
+    item: {
+      id: number;
+      source: ImageSourcePropType;
+      name: string;
+      mode: VoiceMode;
+    };
+  }) => {
+    const isActive = mode === item.mode;
 
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
+    return (
+      <TouchableOpacity
+        style={[styles.imageContainer, isActive && styles.activeImageContainer]}
+        onPress={() => handleModePress(item.mode)}
+      >
+        <Image source={item.source} style={styles.image} />
+        <Text style={styles.modeText}>{item.name}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -93,8 +126,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 3,
+    borderColor: "transparent",
+    borderRadius: 15,
+    padding: 5,
   },
-
+  activeImageContainer: {
+    borderColor: "#FF8C42",
+  },
   text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
   modeText: {
     fontSize: 20,
