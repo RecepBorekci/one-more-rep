@@ -1,3 +1,4 @@
+import { PALETTE } from "@/constants/Colors";
 import {
   useVoiceLineState,
   useVoiceLineUpdater,
@@ -82,6 +83,7 @@ export default function ModeScreen() {
   return (
     <View style={styles.container}>
       <View>
+        <Text style={styles.sectionHeading}>Choose Mode</Text>
         <FlatList
           data={modeImages}
           renderItem={renderImage}
@@ -90,6 +92,7 @@ export default function ModeScreen() {
           contentContainerStyle={styles.grid}
           columnWrapperStyle={styles.row}
         />
+        <Text style={styles.sectionHeading}>Choose Language</Text>
         <View style={styles.pickerContainer}>
           <Picker
             selectedValue={selectedLanguage}
@@ -114,9 +117,7 @@ const styles = StyleSheet.create({
   },
   grid: {
     alignItems: "center",
-    paddingVertical: 20,
     gap: 20,
-    marginBottom: 30,
   },
   row: {
     justifyContent: "space-around",
@@ -132,7 +133,9 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   activeImageContainer: {
-    borderColor: "#FF8C42",
+    borderColor: PALETTE.orangePrimary,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
   modeText: {
@@ -140,12 +143,21 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
+    color: "#000000",
   },
   image: {
     width: 160,
     height: 160,
     borderRadius: 10,
     marginVertical: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   pickerContainer: {
     borderColor: "#8F8787",
@@ -163,5 +175,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     color: "#8F8787",
     outlineStyle: undefined,
+  },
+  sectionHeading: {
+    fontSize: 24,
+    fontWeight: "600",
+    textAlign: "left",
+    fontFamily: "Inter-VariableFont",
+    color: "#000000",
+    marginVertical: 20,
   },
 });
