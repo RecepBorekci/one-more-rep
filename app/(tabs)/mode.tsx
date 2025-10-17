@@ -1,3 +1,5 @@
+import { Picker } from "@react-native-picker/picker";
+import { useState } from "react";
 import {
   FlatList,
   Image,
@@ -42,16 +44,31 @@ export default function ModeScreen() {
     </View>
   );
 
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
+
   return (
     <View style={styles.container}>
-      <FlatList
-        data={modeImages}
-        renderItem={renderImage}
-        numColumns={2}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.grid}
-        columnWrapperStyle={styles.row}
-      />
+      <View>
+        <FlatList
+          data={modeImages}
+          renderItem={renderImage}
+          numColumns={2}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.grid}
+          columnWrapperStyle={styles.row}
+        />
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+            style={styles.picker}
+          >
+            <Picker.Item label="English" value="English" />
+            <Picker.Item label="Turkish" value="Turkish" />
+            <Picker.Item label="Japanese" value="Japanese" />
+          </Picker>
+        </View>
+      </View>
     </View>
   );
 }
@@ -64,8 +81,9 @@ const styles = StyleSheet.create({
   },
   grid: {
     alignItems: "center",
-    padding: 20,
+    paddingVertical: 20,
     gap: 20,
+    marginBottom: 30,
   },
   row: {
     justifyContent: "space-around",
@@ -88,6 +106,23 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 10,
-    margin: 10,
+    marginVertical: 10,
+  },
+  pickerContainer: {
+    borderColor: "#8F8787",
+    borderWidth: 0.7,
+    padding: 5,
+    borderRadius: 12,
+  },
+  picker: {
+    borderWidth: 0,
+    borderRadius: 12,
+    fontSize: 20,
+    fontFamily: "Inter-VariableFont",
+    fontWeight: "400",
+    textAlign: "left",
+    paddingLeft: 5,
+    color: "#8F8787",
+    outlineStyle: undefined,
   },
 });
