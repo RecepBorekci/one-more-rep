@@ -1,11 +1,14 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 // Types
-export type VoiceMode = "Coach" | "Supporting" | "Wholesome" | "Funny";
+export type VoiceMode = "Coach" | "Supportive" | "Wholesome" | "Funny";
+
+export type VoiceLanguage = "English" | "Turkish" | "Japanese";
 
 interface VoiceLineState {
   mode: VoiceMode;
   interval: number;
+  language: VoiceLanguage;
 }
 
 interface VoiceLineContextType {
@@ -14,6 +17,8 @@ interface VoiceLineContextType {
   setMode: (mode: VoiceMode) => void;
   setInterval: (interval: number) => void;
   updateSettings: (settings: Partial<VoiceLineState>) => void;
+  language: VoiceLanguage;
+  setLanguage: (language: VoiceLanguage) => void;
 }
 
 // Create the context
@@ -29,6 +34,7 @@ interface VoiceLineProviderProps {
 export function VoiceLineProvider({ children }: VoiceLineProviderProps) {
   const [mode, setMode] = useState<VoiceMode>("Coach");
   const [interval, setInterval] = useState<number>(20);
+  const [language, setLanguage] = useState<VoiceLanguage>("English");
 
   // Helper function to update multiple settings at once
   const updateSettings = (settings: Partial<VoiceLineState>) => {
@@ -38,13 +44,18 @@ export function VoiceLineProvider({ children }: VoiceLineProviderProps) {
     if (settings.interval !== undefined) {
       setInterval(settings.interval);
     }
+    if (settings.language !== undefined) {
+      setLanguage(settings.language);
+    }
   };
 
   const value: VoiceLineContextType = {
     mode,
     interval,
+    language,
     setMode,
     setInterval,
+    setLanguage,
     updateSettings,
   };
 
@@ -65,8 +76,8 @@ export function useVoiceLineState() {
     );
   }
 
-  const { mode, interval } = context;
-  return { mode, interval };
+  const { mode, interval, language } = context;
+  return { mode, interval, language };
 }
 
 // Updater accessor for components that need to modify voice line settings
@@ -79,6 +90,6 @@ export function useVoiceLineUpdater() {
     );
   }
 
-  const { setMode, setInterval, updateSettings } = context;
-  return { setMode, setInterval, updateSettings };
+  const { setMode, setInterval, setLanguage, updateSettings } = context;
+  return { setMode, setInterval, setLanguage, updateSettings };
 }

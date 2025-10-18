@@ -14,7 +14,7 @@ export default function HomeScreen() {
   type IoniconName = ComponentProps<typeof Ionicons>["name"];
 
   // Use the custom hook to get voice line settings
-  const { mode: currentMode, interval } = useVoiceLineState();
+  const { mode: currentMode, interval, language } = useVoiceLineState();
 
   return (
     <View style={styles.container}>
@@ -48,6 +48,7 @@ export default function HomeScreen() {
       </Pressable>
       <View style={styles.currentModeContainer}>
         <Text style={styles.text}>Current Mode: {currentMode}</Text>
+        <Text style={styles.text}>Selected Language: {language}</Text>
         <Text style={styles.text}>Interval: {interval}</Text>
       </View>
     </View>
@@ -96,6 +97,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 5,
+    gap: 8,
   },
 });
