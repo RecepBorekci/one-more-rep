@@ -2,10 +2,10 @@ import { PALETTE } from "@/constants/Colors";
 import {
   useVoiceLineState,
   useVoiceLineUpdater,
+  VoiceLanguage,
   VoiceMode,
 } from "@/hooks/useVoiceLine";
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
 import {
   FlatList,
   Image,
@@ -49,12 +49,15 @@ const modeImages: {
 ];
 
 export default function ModeScreen() {
-  const { mode } = useVoiceLineState();
-  const { setMode } = useVoiceLineUpdater();
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
+  const { mode, language } = useVoiceLineState();
+  const { setMode, setLanguage } = useVoiceLineUpdater();
 
   const handleModePress = (selectedMode: VoiceMode) => {
     setMode(selectedMode);
+  };
+
+  const handleLanguageChange = (selectedLanguage: VoiceLanguage) => {
+    setLanguage(selectedLanguage);
   };
 
   const renderImage = ({
@@ -95,8 +98,10 @@ export default function ModeScreen() {
         <Text style={styles.sectionHeading}>Choose Language</Text>
         <View style={styles.pickerContainer}>
           <Picker
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+            selectedValue={language}
+            onValueChange={(itemValue) =>
+              handleLanguageChange(itemValue as VoiceLanguage)
+            }
             style={styles.picker}
           >
             <Picker.Item label="English" value="English" />
