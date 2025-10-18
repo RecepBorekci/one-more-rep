@@ -76,6 +76,9 @@ export default function ModeScreen() {
       <TouchableOpacity
         style={[styles.imageContainer, isActive && styles.activeImageContainer]}
         onPress={() => handleModePress(item.mode)}
+        accessibilityRole="button"
+        accessibilityLabel={`Select ${item.name} mode`}
+        accessibilityState={{ selected: isActive }}
       >
         <Image source={item.source} style={styles.image} />
         <Text style={styles.modeText}>{item.name}</Text>
