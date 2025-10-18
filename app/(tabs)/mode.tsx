@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingLeft: 5,
     color: "#8F8787",
-    outlineStyle: undefined,
   },
   sectionHeading: {
     fontSize: 24,
