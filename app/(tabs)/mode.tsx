@@ -32,7 +32,7 @@ const modeImages: {
     id: 2,
     source: require("@/assets/images/mode_images/supportive_mode.png"),
     name: "Supportive",
-    mode: "Supporting",
+    mode: "Supportive",
   },
   {
     id: 3,

@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 // Types
-export type VoiceMode = "Coach" | "Supporting" | "Wholesome" | "Funny";
+export type VoiceMode = "Coach" | "Supportive" | "Wholesome" | "Funny";
 
 interface VoiceLineState {
   mode: VoiceMode;
