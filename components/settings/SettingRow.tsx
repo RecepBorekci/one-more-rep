@@ -16,20 +16,8 @@ export default function SettingRow({
   style,
   vertical = false,
 }: SettingRowProps) {
-  if (vertical) {
-    return (
-      <View style={[styles.settingRowVertical, style]}>
-        <View style={styles.labelValueContainer}>
-          <Text style={styles.settingLabel}>{label}</Text>
-          {value && <Text style={styles.settingValue}>{value}</Text>}
-        </View>
-        {children}
-      </View>
-    );
-  }
-
   return (
-    <View style={[styles.settingRow, style]}>
+    <View style={[vertical ? styles.settingRowVertical : styles.settingRow, style]}>
       <View style={styles.labelValueContainer}>
         <Text style={styles.settingLabel}>{label}</Text>
         {value && <Text style={styles.settingValue}>{value}</Text>}
