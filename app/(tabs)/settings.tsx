@@ -37,6 +37,8 @@ export default function SettingsScreen() {
     setSystemSound(true);
     setMuteDuringCalls(false);
     setBackgroundMode(false);
+    setRangeLow(30);
+    setRangeHigh(600);
     setAppLanguage("English");
     setTheme("System");
   };
