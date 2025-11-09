@@ -33,7 +33,7 @@ const TAB_CONFIG: ReadonlyArray<{
   {
     name: "interval",
     title: "Interval",
-    icon: { lib: "AntDesign", name: "clockcircleo" },
+    icon: { lib: "AntDesign", name: "clock-circle" },
     headerShown: true,
     headerTitle: "Interval Screen",
   },
@@ -87,11 +87,11 @@ export default function TabLayout() {
   const TabIcon = ({ icon, color }: { icon: IconSpec; color: string }) => {
     switch (icon.lib) {
       case "Ionicons":
-        return <Ionicons size={28} name={icon.name} color={color} />;
+        return <Ionicons size={24} name={icon.name} color={color} />;
       case "MaterialIcons":
-        return <MaterialIcons size={28} name={icon.name} color={color} />;
+        return <MaterialIcons size={24} name={icon.name} color={color} />;
       case "AntDesign":
-        return <AntDesign size={28} name={icon.name} color={color} />;
+        return <AntDesign size={24} name={icon.name} color={color} />;
       default:
         return null;
     }
