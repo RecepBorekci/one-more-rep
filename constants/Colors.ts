@@ -6,6 +6,7 @@ export const PALETTE = {
   yellowLight: "#FEF9E1",
   gray400: "#988C8C",
   gray600: "#929292",
+  gray200: "#B4B4B4",
   // Add more as needed: black, success, warning, etc.
 } as const;
 
