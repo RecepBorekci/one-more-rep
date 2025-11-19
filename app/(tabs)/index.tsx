@@ -69,19 +69,17 @@ const styles = StyleSheet.create({
   },
   background: {
     position: "absolute",
-    zIndex: -1,
     height: "100%",
     width: "100%",
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
-    fontWeight: "500",
+    fontWeight: "600",
   },
   button: {
     padding: 10,
-    marginBottom: 20,
     borderRadius: 5,
     cursor: "pointer",
     alignItems: "center",
