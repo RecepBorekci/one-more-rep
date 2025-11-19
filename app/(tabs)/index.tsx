@@ -20,36 +20,38 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <LinearGradient
         colors={[
-          PALETTE.gray600,
+          PALETTE.gray200,
           PALETTE.white,
           PALETTE.white,
-          PALETTE.gray600,
+          PALETTE.gray200,
         ]}
-        locations={[0, 0.2, 0.5, 1]}
+        locations={[0, 0.25, 0.55, 1]}
         style={styles.background}
       />
-      <Logo />
-      <Pressable
-        style={({ pressed }) => [
-          styles.button,
-          pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
-        ]}
-        onPress={handleToggle}
-        accessibilityRole="button"
-        accessibilityState={{ selected: isPlaying }}
-        accessibilityLabel={isPlaying ? "Stop" : "Play"}
-      >
-        <Ionicons
-          name={iconName as IoniconName}
-          size={48}
-          color={PALETTE.orangePrimary}
-        />
-        <Text style={styles.buttonText}>{buttonLabel}</Text>
-      </Pressable>
-      <View style={styles.currentModeContainer}>
-        <Text style={styles.text}>Current Mode: {currentMode}</Text>
-        <Text style={styles.text}>Selected Language: {language}</Text>
-        <Text style={styles.text}>Interval: {interval}</Text>
+      <View style={styles.contentContainer}>
+        <Logo />
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
+          ]}
+          onPress={handleToggle}
+          accessibilityRole="button"
+          accessibilityState={{ selected: isPlaying }}
+          accessibilityLabel={isPlaying ? "Stop" : "Play"}
+        >
+          <Ionicons
+            name={iconName as IoniconName}
+            size={60}
+            color={PALETTE.orangePrimary}
+          />
+          <Text style={styles.buttonText}>{buttonLabel}</Text>
+        </Pressable>
+        <View style={styles.currentModeContainer}>
+          <Text style={styles.text}>Current Mode: {currentMode}</Text>
+          <Text style={styles.text}>Selected Language: {language}</Text>
+          <Text style={styles.text}>Interval: {interval}</Text>
+        </View>
       </View>
     </View>
   );
@@ -60,24 +62,21 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     alignItems: "center",
-    justifyContent: "space-evenly",
+  },
+  contentContainer: {
     paddingHorizontal: 30,
-    paddingBottom: 50,
     paddingTop: 120,
   },
   background: {
     position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
     height: "100%",
     width: "100%",
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
-    fontWeight: "500",
+    fontWeight: "600",
   },
   button: {
     padding: 10,
@@ -88,10 +87,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: PALETTE.orangePrimary,
-    fontSize: 18,
+    fontSize: 24,
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
-    fontWeight: "500",
+    fontWeight: "600",
   },
   currentModeContainer: {
     flexDirection: "column",
