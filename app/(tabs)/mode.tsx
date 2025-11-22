@@ -57,6 +57,7 @@ export default function ModeScreen() {
   const GAP = 16;
   const PADDING = 20;
   const itemWidth = (width - PADDING * 2 - GAP) / 2;
+  const IMAGE_PADDING_RATIO = 0.1;
 
   const handleModePress = (selectedMode: VoiceMode) => {
     setMode(selectedMode);
@@ -90,7 +91,10 @@ export default function ModeScreen() {
                   source={item.source}
                   style={[
                     styles.image,
-                    { width: itemWidth - 20, height: itemWidth - 20 },
+                    {
+                      width: itemWidth * (1 - IMAGE_PADDING_RATIO),
+                      height: itemWidth * (1 - IMAGE_PADDING_RATIO),
+                    },
                   ]}
                 />
                 <Text style={styles.modeText}>{item.name}</Text>
