@@ -7,12 +7,13 @@ import {
 } from "@/hooks/useVoiceLine";
 import { Picker } from "@react-native-picker/picker";
 import {
-  FlatList,
   Image,
   ImageSourcePropType,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 
@@ -51,6 +52,12 @@ const modeImages: {
 export default function ModeScreen() {
   const { mode, language } = useVoiceLineState();
   const { setMode, setLanguage } = useVoiceLineUpdater();
+  const { width } = useWindowDimensions();
+
+  const GAP = 16;
+  const PADDING = 20;
+  const itemWidth = (width - PADDING * 2 - GAP) / 2;
+  const IMAGE_PADDING_RATIO = 0.1;
 
   const handleModePress = (selectedMode: VoiceMode) => {
     setMode(selectedMode);
@@ -60,44 +67,41 @@ export default function ModeScreen() {
     setLanguage(selectedLanguage);
   };
 
-  const renderImage = ({
-    item,
-  }: {
-    item: {
-      id: number;
-      source: ImageSourcePropType;
-      name: string;
-      mode: VoiceMode;
-    };
-  }) => {
-    const isActive = mode === item.mode;
-
-    return (
-      <TouchableOpacity
-        style={[styles.imageContainer, isActive && styles.activeImageContainer]}
-        onPress={() => handleModePress(item.mode)}
-        accessibilityRole="button"
-        accessibilityLabel={`Select ${item.name} mode`}
-        accessibilityState={{ selected: isActive }}
-      >
-        <Image source={item.source} style={styles.image} />
-        <Text style={styles.modeText}>{item.name}</Text>
-      </TouchableOpacity>
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      <View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={{ width: width - PADDING * 2 }}>
         <Text style={styles.sectionHeading}>Choose Mode</Text>
-        <FlatList
-          data={modeImages}
-          renderItem={renderImage}
-          numColumns={2}
-          keyExtractor={(item) => item.id.toString()}
-          contentContainerStyle={styles.grid}
-          columnWrapperStyle={styles.row}
-        />
+        <View style={styles.gridContainer}>
+          {modeImages.map((item) => {
+            const isActive = mode === item.mode;
+            return (
+              <TouchableOpacity
+                key={item.id}
+                style={[
+                  styles.imageContainer,
+                  isActive && styles.activeImageContainer,
+                  { width: itemWidth },
+                ]}
+                onPress={() => handleModePress(item.mode)}
+                accessibilityRole="button"
+                accessibilityLabel={`Select ${item.name} mode`}
+                accessibilityState={{ selected: isActive }}
+              >
+                <Image
+                  source={item.source}
+                  style={[
+                    styles.image,
+                    {
+                      width: itemWidth * (1 - IMAGE_PADDING_RATIO),
+                      height: itemWidth * (1 - IMAGE_PADDING_RATIO),
+                    },
+                  ]}
+                />
+                <Text style={styles.modeText}>{item.name}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
         <Text style={styles.sectionHeading}>Choose Language</Text>
         <View style={styles.pickerContainer}>
           <Picker
@@ -113,26 +117,24 @@ export default function ModeScreen() {
           </Picker>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#fff",
+    paddingVertical: 20,
   },
-  grid: {
-    alignItems: "center",
-    gap: 20,
-  },
-  row: {
-    justifyContent: "space-around",
-    gap: 50,
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 16,
   },
   imageContainer: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 3,
@@ -145,19 +147,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  text: { fontSize: 20, fontWeight: "bold", textAlign: "center" },
   modeText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
     fontFamily: "Inter-VariableFont",
     color: "#000000",
+    marginTop: 5,
   },
   image: {
-    width: 160,
-    height: 160,
     borderRadius: 10,
-    marginVertical: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -170,25 +169,22 @@ const styles = StyleSheet.create({
   pickerContainer: {
     borderColor: "#8F8787",
     borderWidth: 0.7,
-    padding: 5,
+    padding: 0,
     borderRadius: 12,
   },
   picker: {
     borderWidth: 0,
     borderRadius: 12,
-    fontSize: 20,
-    fontFamily: "Inter-VariableFont",
-    fontWeight: "400",
-    textAlign: "left",
-    paddingLeft: 5,
+    // fontSize doesn't work on Picker style on Android usually, but keeping it
     color: "#8F8787",
   },
   sectionHeading: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "600",
     textAlign: "left",
     fontFamily: "Inter-VariableFont",
     color: "#000000",
-    marginVertical: 20,
+    marginBottom: 10,
+    marginTop: 5,
   },
 });
